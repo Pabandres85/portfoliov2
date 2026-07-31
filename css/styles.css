@@ -435,27 +435,29 @@ img {
 /* ═══════════════════════════════════════
    SCROLL REVEAL (CSS-only with JS class)
    ═══════════════════════════════════════ */
-.reveal {
+/* Ocultamos solo si JS está vivo para volver a mostrarlo. Sin la clase .js
+   el contenido se ve siempre, en vez de quedar invisible para siempre. */
+.js .reveal {
   opacity: 0;
   transform: translateY(30px);
   transition:
     opacity 0.7s var(--ease-out),
     transform 0.7s var(--ease-out);
 }
-.reveal.visible {
+.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Stagger children */
-.reveal-stagger > * {
+.js .reveal-stagger > * {
   opacity: 0;
   transform: translateY(24px);
   transition:
     opacity 0.5s var(--ease-out),
     transform 0.5s var(--ease-out);
 }
-.reveal-stagger.visible > * {
+.js .reveal-stagger.visible > * {
   opacity: 1;
   transform: translateY(0);
 }
@@ -930,6 +932,44 @@ img {
 }
 
 /* ═══════════════════════════════════════
+   ESTADOS DE FALLO
+   ═══════════════════════════════════════ */
+.noscript-banner {
+  padding: 1rem 1.5rem;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--violet);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: center;
+}
+.noscript-banner strong { color: var(--text-primary); }
+.noscript-banner a { color: var(--violet); text-decoration: underline; }
+
+.data-error {
+  grid-column: 1 / -1;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--text-secondary);
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+}
+.data-error i {
+  font-size: 1.75rem;
+  color: var(--violet);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.data-error p { font-size: 0.95rem; }
+.data-error__hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+.data-error a { color: var(--violet); }
+.data-error a:hover { text-decoration: underline; }
+
+/* ═══════════════════════════════════════
    CONTACT
    ═══════════════════════════════════════ */
 .contact {
@@ -1023,6 +1063,47 @@ img {
   box-shadow: 0 0 0 3px var(--violet-soft);
 }
 .form__group textarea { resize: vertical; }
+
+.form__group input:disabled,
+.form__group textarea:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.form-notice {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.form-notice i { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+.form-notice strong { color: var(--text-primary); display: block; margin-bottom: 0.2rem; }
+.form-notice a { text-decoration: underline; }
+
+.form-notice--info {
+  background: var(--violet-soft);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+}
+.form-notice--info i,
+.form-notice--info a { color: var(--violet); }
+
+.form-notice--success {
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+}
+.form-notice--success i { color: #34d399; }
+
+.form-notice--error {
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+}
+.form-notice--error i,
+.form-notice--error a { color: #f87171; }
 
 /* ═══════════════════════════════════════
    FOOTER
@@ -1166,5 +1247,6 @@ img {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal,
+  .js .reveal-stagger > * { opacity: 1; transform: none; }
 }

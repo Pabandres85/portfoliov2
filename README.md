@@ -5,7 +5,7 @@ Portafolio profesional estático construido con HTML, CSS y JavaScript puro.
 ## Estructura
 
 ```
-portfolio/
+.
 ├── index.html          ← Página principal
 ├── css/
 │   └── styles.css      ← Estilos (dark theme, glassmorphism, animaciones)
@@ -15,8 +15,24 @@ portfolio/
 │   └── projects.json   ← Datos de experiencia, proyectos, skills, formación
 ├── assets/
 │   └── images/         ← Imágenes y capturas de proyectos
+├── .gitattributes      ← Fija finales de línea en LF
 └── README.md
 ```
+
+> El sitio vive en la raíz del repositorio porque GitHub Pages solo publica
+> desde la raíz o desde `/docs`.
+
+## Desarrollo local
+
+`index.html` carga los datos con `fetch`, que el navegador bloquea bajo el
+protocolo `file://`. Abrirlo con doble clic deja las secciones dinámicas
+vacías: hay que servirlo por HTTP.
+
+```bash
+python -m http.server 8000
+```
+
+Luego abre `http://localhost:8000`.
 
 ## Personalización
 
@@ -32,10 +48,24 @@ Usa una imagen cuadrada: el marco es de 280px con `object-fit: cover`.
 Actualiza los enlaces de LinkedIn, GitHub y correo en `index.html`.
 
 ### 4. Formulario de contacto
-Registra tu formulario en [Formspree](https://formspree.io) y reemplaza `TU_ID` en el action del form.
+Crea un formulario en [Formspree](https://formspree.io) y pega su ID en la
+constante `FORMSPREE_ID`, al inicio de `js/main.js`:
+
+```js
+const FORMSPREE_ID = 'mabcdefg';
+```
+
+Mientras esté vacía, el formulario aparece desactivado con un aviso que
+remite al correo y a WhatsApp. Es deliberado: un formulario que acepta
+mensajes y los pierde es peor que uno que avisa que no está listo.
+
+Con el ID puesto, el envío ocurre sin recargar la página y muestra el
+resultado en el mismo formulario.
 
 ### 5. CV descargable
-Coloca tu CV en `assets/` y actualiza el enlace del botón `#btnDownloadCV`.
+Hoy el botón de la barra superior enlaza al perfil de LinkedIn. Para ofrecer
+un PDF, coloca el archivo en `assets/` y apunta ahí el `href` de `#btnProfile`
+en `index.html`, agregando el atributo `download`.
 
 ### 6. Capturas de proyectos
 Agrega imágenes en `assets/images/` y referéncialas en `projects.json` si deseas añadir un campo `image`.
@@ -44,8 +74,9 @@ Agrega imágenes en `assets/images/` y referéncialas en `projects.json` si dese
 
 ### GitHub Pages
 1. Sube el contenido a un repositorio.
-2. Ve a Settings → Pages → Source: main branch.
-3. Tu sitio estará en `https://tuusuario.github.io/portfolio/`.
+2. Ve a Settings → Pages → Source: Deploy from a branch → `master` / `(root)`.
+   Ojo: el desplegable trae `main` por defecto y esta rama se llama `master`.
+3. Tu sitio estará en `https://pabandres85.github.io/portfoliov2/`.
 
 ### Netlify / Vercel
 Arrastra la carpeta o conecta el repo. No requiere build.

@@ -7,6 +7,10 @@
   <meta name="theme-color" content="#0D0E12">
   <title>Pablo Andrés Muñoz | Full Stack Developer &amp; IA</title>
 
+  <!-- Marca que JS está activo. Debe ir antes del CSS: las animaciones de
+       entrada ocultan contenido, y sin JS nadie volvería a mostrarlo. -->
+  <script>document.documentElement.className = 'js';</script>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +23,16 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <noscript>
+    <div class="noscript-banner">
+      <strong>JavaScript está desactivado.</strong>
+      Puedes leer esta página, pero las secciones de experiencia, proyectos,
+      habilidades y formación no se cargarán. Escríbeme a
+      <a href="mailto:ingenieropabloandres0@gmail.com">ingenieropabloandres0@gmail.com</a>
+      o por <a href="https://wa.me/573217476850">WhatsApp</a>.
+    </div>
+  </noscript>
+
   <!-- ═══════════════ NAV ═══════════════ -->
   <header class="nav" id="nav">
     <div class="nav__inner">
@@ -36,8 +50,9 @@
         <a href="#habilidades" class="nav__link">Habilidades</a>
         <a href="#formacion" class="nav__link">Formación</a>
         <a href="#contacto" class="nav__link">Contacto</a>
-        <a href="#" class="btn btn--sm nav__cta" id="btnDownloadCV">
-          <i class="icon-download"></i> Descargar CV
+        <a href="https://www.linkedin.com/in/pabandres85" target="_blank" rel="noopener"
+           class="btn btn--sm nav__cta" id="btnProfile">
+          <i class="icon-linkedin"></i> Ver perfil
         </a>
       </nav>
     </div>
@@ -228,7 +243,7 @@
           </div>
         </div>
 
-        <form class="contact__form glass" action="https://formspree.io/f/TU_ID" method="POST">
+        <form class="contact__form glass" id="contactForm" method="POST">
           <div class="form__group">
             <label for="name">Nombre</label>
             <input type="text" id="name" name="name" required placeholder="Tu nombre completo">

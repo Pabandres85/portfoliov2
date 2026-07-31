@@ -3,11 +3,27 @@
    Pablo Andrés Muñoz
    ═══════════════════════════════════════ */
 
+/* ═══════════════════════════════════════
+   CONFIGURACIÓN
+   ═══════════════════════════════════════ */
+
+/* Pega aquí el ID de tu formulario de Formspree (formspree.io → New Form).
+   Es el código final de la URL, por ejemplo: 'mabcdefg'.
+   Mientras esté vacío el formulario queda inactivo y en su lugar se muestra
+   el contacto directo, para que nadie escriba un mensaje que no llegaría. */
+const FORMSPREE_ID = '';
+
+const CONTACTO = {
+  email:    'ingenieropabloandres0@gmail.com',
+  whatsapp: 'https://wa.me/573217476850'
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initTyping();
   initScrollReveal();
   loadData();
+  initContactForm();
   setCurrentYear();
 });
 
@@ -123,7 +139,8 @@ function initScrollReveal() {
 /* ───── LOAD DATA ───── */
 async function loadData() {
   try {
-    const res  = await fetch('data/projects.json');
+    const res = await fetch('data/projects.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     renderTimeline(data.experience);
     renderProjects(data.projects);
@@ -132,7 +149,35 @@ async function loadData() {
     renderCertifications(data.certifications);
   } catch (err) {
     console.error('Error loading data:', err);
+    showDataError();
   }
+}
+
+/* Sin esto, un fallo de red deja cuatro secciones vacías y en silencio:
+   el visitante no ve nada y no sabe por qué. */
+function showDataError() {
+  const sections = {
+    timeline:      'la experiencia profesional',
+    projectsGrid:  'los proyectos',
+    skillsGrid:    'las habilidades',
+    educationGrid: 'la formación',
+    certsGrid:     'las certificaciones'
+  };
+
+  Object.entries(sections).forEach(([id, label]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('reveal-stagger');
+    el.innerHTML = `
+      <div class="data-error" role="alert">
+        <i class="icon-triangle-alert" aria-hidden="true"></i>
+        <p>No se pudo cargar ${label}.</p>
+        <p class="data-error__hint">
+          Revisa tu conexión y recarga la página, o escríbeme a
+          <a href="mailto:ingenieropabloandres0@gmail.com">ingenieropabloandres0@gmail.com</a>.
+        </p>
+      </div>`;
+  });
 }
 
 /* ───── TIMELINE ───── */
@@ -296,6 +341,74 @@ function renderCertifications(items) {
     { threshold: 0.1 }
   );
   obs.observe(grid);
+}
+
+/* ───── FORMULARIO DE CONTACTO ───── */
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const notice = document.createElement('div');
+  notice.className = 'form-notice';
+  form.prepend(notice);
+
+  // Sin ID configurado: desactivamos el formulario en vez de fingir que envía.
+  if (!FORMSPREE_ID) {
+    notice.classList.add('form-notice--info');
+    notice.setAttribute('role', 'status');
+    notice.innerHTML = `
+      <i class="icon-info" aria-hidden="true"></i>
+      <div>
+        <strong>El formulario todavía no está conectado.</strong>
+        <p>
+          Escríbeme a <a href="mailto:${CONTACTO.email}">${CONTACTO.email}</a>
+          o por <a href="${CONTACTO.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>.
+        </p>
+      </div>`;
+    form.querySelectorAll('input, textarea, button').forEach(el => {
+      el.disabled = true;
+    });
+    return;
+  }
+
+  notice.hidden = true;
+  form.action = `https://formspree.io/f/${FORMSPREE_ID}`;
+
+  const showNotice = (type, html) => {
+    notice.hidden = false;
+    notice.className = `form-notice form-notice--${type}`;
+    notice.setAttribute('role', type === 'error' ? 'alert' : 'status');
+    notice.innerHTML = html;
+  };
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const label = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+
+    try {
+      const res = await fetch(form.action, {
+        method:  'POST',
+        body:    new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      showNotice('success', '<i class="icon-check" aria-hidden="true"></i><div>¡Mensaje enviado! Te responderé pronto.</div>');
+      form.reset();
+    } catch (err) {
+      console.error('Error al enviar el formulario:', err);
+      showNotice('error', `
+        <i class="icon-triangle-alert" aria-hidden="true"></i>
+        <div>No se pudo enviar. Escríbeme a
+          <a href="mailto:${CONTACTO.email}">${CONTACTO.email}</a>.
+        </div>`);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = label;
+    }
+  });
 }
 
 /* ───── UTILS ───── */
