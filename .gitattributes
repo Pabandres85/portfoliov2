@@ -1,0 +1,17 @@
+# Finales de línea: LF tanto en el repositorio como en el disco.
+# Tiene prioridad sobre core.autocrlf, que en Windows convertiría a CRLF
+# al hacer checkout y generaría diffs de archivo completo entre máquinas.
+* text=auto eol=lf
+
+# Binarios: Git nunca debe intentar normalizarlos.
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.webp binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.woff binary
+*.woff2 binary
+*.ttf  binary
+*.eot  binary
