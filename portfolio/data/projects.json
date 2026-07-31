@@ -1,0 +1,391 @@
+{
+  "experience": [
+    {
+      "role": "Ingeniero de Datos e IA",
+      "company": "Administración pública municipal",
+      "period": "Enero 2026 – Presente",
+      "description": "Arquitectura de un ecosistema distrital de datos sobre AWS y diseño del Índice de Transformación Territorial (ITT).",
+      "results": [
+        "Arquitectura medallion data lake en AWS (S3, Glue, Athena, QuickSight)",
+        "Diseño del ITT v1.0 con cinco dimensiones ponderadas y normalización inversa",
+        "Implementación de gobernanza de datos con Lake Formation y OpenMetadata",
+        "Dashboard público DataCali para transparencia territorial"
+      ]
+    },
+    {
+      "role": "Software App Engineer – Full Stack Developer",
+      "company": "Multinacional de tecnología · Sector bancario",
+      "period": "Marzo 2023 – Presente",
+      "description": "Soluciones tecnológicas que optimizan modelos de negocio bancarios: front ends Angular, APIs .NET seguras y escalables, y arquitectura cloud en Azure con CI/CD sobre Azure DevOps.",
+      "results": [
+        "Modernización de sistema bancario legado DMSII hacia arquitectura .NET Clean",
+        "Optimización de consultas de 3 minutos a 4 segundos",
+        "Migración de Angular 18 a 21 con componentes standalone",
+        "Integración biométrica FacePhi y workflows de doble control",
+        "Strategy Pattern para acceso dual SQL Server/DMSII"
+      ]
+    },
+    {
+      "role": "Docente universitario",
+      "company": "Universidad privada · Cali",
+      "period": "Dos cursos",
+      "description": "Dictado de dos cursos universitarios en Big Data y análisis de datos aplicados al sector público.",
+      "results": [
+        "Formación en Big Data y análisis de datos",
+        "Capacitación práctica en Python y herramientas de visualización"
+      ]
+    },
+    {
+      "role": "Consultor de datos",
+      "company": "Administración pública municipal",
+      "period": "2024",
+      "description": "Automatización de procesos de cobro coactivo con generación masiva de documentos.",
+      "results": [
+        "Generación de 17,000+ resoluciones de embargo desde Excel",
+        "Automatización XML/DOCX con inyección de datos y conversión a PDF",
+        "Reducción del tiempo de procesamiento de semanas a horas"
+      ]
+    },
+    {
+      "role": "Desarrollador Back-End / Data Engineer",
+      "company": "Freelance",
+      "period": "Enero 2022 – Marzo 2023",
+      "description": "Desarrollo backend e ingeniería de datos para clientes independientes.",
+      "results": [
+        "Backend con C# y .NET Core sobre bases de datos SQL",
+        "Diseño de pipelines de ingeniería de datos",
+        "Extracción automatizada de información mediante web scraping"
+      ]
+    },
+    {
+      "role": "Analista de desarrollo",
+      "company": "Empresa de software · Sector salud",
+      "period": "Agosto 2020 – Diciembre 2021",
+      "description": "Análisis e ingeniería de datos para el sistema de información de la calidad en salud.",
+      "results": [
+        "Reportes obligatorios al Sistema de Salud y Protección Social",
+        "Construcción de indicadores de gestión para IPS",
+        "Asesoría en modelado y calidad de datos del sector salud"
+      ]
+    },
+    {
+      "role": "Analista de sistemas de TI",
+      "company": "Empresa de servicios públicos",
+      "period": "Septiembre 2016 – Julio 2020",
+      "description": "Soporte y análisis de datos en la gestión de legalización de actividades operativo-comerciales de acueducto y alcantarillado.",
+      "results": [
+        "Manejo de openSmartFlex con Java y PL/SQL",
+        "Análisis de bases de datos de órdenes de trabajo",
+        "Informes de gestión y evaluación de indicadores",
+        "Operación de módulos customer, ttcad, zpoin, cncrm, foca y fsss"
+      ]
+    },
+    {
+      "role": "Contratista técnico",
+      "company": "Entidad de salud departamental",
+      "period": "Agosto – Diciembre 2013",
+      "description": "Vigilancia epidemiológica y gestión de datos para la red hospitalaria departamental.",
+      "results": [
+        "Manejo de software de vigilancia epidemiológica y bases de datos",
+        "Gestión de comités y auditorías",
+        "Capacitaciones y entrenamientos a la red hospitalaria departamental"
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "title": "ITT – Índice de Transformación Territorial",
+      "category": "ciencia-datos",
+      "description": "Indicador compuesto para medir la transformación urbana de Cali con cinco dimensiones ponderadas, geolocalización por barrio y visualización interactiva.",
+      "problem": "Cali no contaba con un indicador unificado para medir el impacto territorial de las intervenciones públicas.",
+      "technologies": ["Python", "Pandas", "GeoPandas", "AWS", "QuickSight"],
+      "result": "Piloto funcional con datos de seguridad para Barrio Obrero, escalable a 22 comunas.",
+      "icon": "bar-chart-3",
+      "links": {}
+    },
+    {
+      "title": "Modernización de core bancario",
+      "category": "desarrollo",
+      "description": "Migración de sistema bancario legado DMSII a arquitectura .NET Clean con Angular, APIs REST y acceso dual a bases de datos.",
+      "problem": "Sistema crítico de 30+ años sin capacidad de evolución ni integración moderna.",
+      "technologies": [".NET", "C#", "Angular", "TypeScript", "SQL Server"],
+      "result": "Consultas optimizadas de 3 min → 4 seg. Sistema en producción con biometría integrada.",
+      "icon": "landmark",
+      "links": {}
+    },
+    {
+      "title": "RUES Consultor Plus",
+      "category": "automatizacion",
+      "description": "Aplicación de escritorio Windows para consultas automatizadas al Registro Único Empresarial de Colombia con sistema de licenciamiento offline.",
+      "problem": "Consulta manual de registros empresariales tomaba horas para grandes volúmenes.",
+      "technologies": ["Python", "PyInstaller", "Ed25519", "Tkinter"],
+      "result": "Consultas masivas automatizadas con retry por registro y licenciamiento Ed25519.",
+      "icon": "search",
+      "links": {}
+    },
+    {
+      "title": "Asistente Normativo RAG Multi-Agente",
+      "category": "ia",
+      "description": "Sistema multi-agente con RAG para asistir a IPS colombianas en el cumplimiento de la Resolución 3100 de habilitación en salud.",
+      "problem": "Las IPS enfrentan dificultades para interpretar y cumplir los estándares normativos de habilitación.",
+      "technologies": ["Python", "LangChain", "RAG", "LLMs", "Vector DB"],
+      "result": "Proyecto de tesis de maestría con siete agentes especializados por estándar de habilitación.",
+      "icon": "bot",
+      "links": {}
+    },
+    {
+      "title": "Pulmón de Oriente – Dashboard territorial",
+      "category": "ciencia-datos",
+      "description": "Dashboard en GitHub Pages con datos geoespaciales y financieros para las comunas 13-14 de Cali, con join por BPIN.",
+      "problem": "Falta de visibilidad pública sobre la inversión territorial en las comunas orientales.",
+      "technologies": ["JavaScript", "GeoJSON", "HTML/CSS", "GitHub Pages"],
+      "result": "Dashboard público con visualización geoespacial de proyectos y presupuesto por secretaría.",
+      "icon": "map",
+      "links": {}
+    },
+    {
+      "title": "Cobro coactivo masivo",
+      "category": "automatizacion",
+      "description": "Sistema de generación masiva de resoluciones de embargo a partir de datos en Excel, con inyección en plantillas Word y conversión a PDF.",
+      "problem": "Generación manual de 17,000+ documentos legales tomaba semanas.",
+      "technologies": ["Python", "python-docx", "LibreOffice", "Excel"],
+      "result": "17,000+ resoluciones generadas automáticamente, reducción de semanas a horas.",
+      "icon": "file-text",
+      "links": {}
+    },
+    {
+      "title": "Azure Cost Analysis Dashboard",
+      "category": "desarrollo",
+      "description": "Dashboard HTML interactivo para análisis de costos de suscripción Azure, identificando drivers de gasto como VMs y Bastion.",
+      "problem": "Falta de visibilidad granular sobre los costos de infraestructura Azure del proyecto.",
+      "technologies": ["HTML", "JavaScript", "CSS", "Azure APIs"],
+      "result": "Identificación de principales drivers de costo y recomendaciones de optimización.",
+      "icon": "cloud",
+      "links": {}
+    },
+    {
+      "title": "Predicciones FIFA World Cup 2026",
+      "category": "ia",
+      "description": "Motor de predicción usando consenso de tres agentes de IA para fase de grupos, eliminatorias, bracket y goleadores del Mundial 2026.",
+      "problem": "Proyecto analítico personal para explorar ensemble de agentes predictivos en deportes.",
+      "technologies": ["Node.js", "docx", "IA Ensemble", "JavaScript"],
+      "result": "Documento completo con predicciones de 48 partidos, standings y bracket final.",
+      "icon": "trophy",
+      "links": {}
+    },
+    {
+      "title": "Chatbot Multisectorial con DeepSeek",
+      "category": "ia",
+      "description": "Plataforma adaptable que permite a empresas ofrecer servicio al cliente personalizado mediante un LLM alojado localmente. Incluye modo oscuro, analítica de conversaciones, gestión multiempresa y pruebas unitarias.",
+      "problem": "Las empresas pequeñas no pueden costear asistentes conversacionales en la nube ni ceder sus datos a terceros.",
+      "technologies": ["Python", "Streamlit", "DeepSeek", "LM Studio", "HuggingFace"],
+      "result": "LLM desplegado como API local en LM Studio, sin dependencia de servicios externos.",
+      "icon": "message-circle",
+      "links": { "repo": "https://github.com/Pabandres85/Proyecto-LLM-deepseek" }
+    },
+    {
+      "title": "MCP_IA – IA local con análisis futbolístico",
+      "category": "ia",
+      "description": "Plataforma bajo arquitectura Model Context Protocol que integra un LLM local con interfaz web en Streamlit y un bot de Telegram para predicciones y análisis de rendimiento deportivo.",
+      "problem": "Explorar el MCP como estándar para dar contexto estructurado a modelos ejecutados localmente.",
+      "technologies": ["Python", "MCP", "LM Studio", "Streamlit", "Telegram Bot"],
+      "result": "Panel de métricas, exportación a PDF y conversación impulsada por contexto estructurado.",
+      "icon": "network",
+      "links": { "repo": "https://github.com/Pabandres85/MCP_IA" }
+    },
+    {
+      "title": "NeumoIA – Detección de neumonía",
+      "category": "ia",
+      "description": "Sistema de visión por computador para detectar neumonía en radiografías de tórax, con pruebas unitarias y despliegue contenerizado.",
+      "problem": "El diagnóstico radiológico temprano depende de disponibilidad de especialistas, escasa en zonas rurales.",
+      "technologies": ["Python", "Docker", "Deep Learning", "Procesamiento de imagen"],
+      "result": "Modelo empaquetado en Docker con suite de pruebas que asegura fiabilidad del despliegue.",
+      "icon": "activity",
+      "links": { "repo": "https://github.com/Pabandres85/NeumoIA" }
+    },
+    {
+      "title": "Automatización empresarial con IA",
+      "category": "automatizacion",
+      "description": "Flujos inteligentes en n8n conectados a un backend FastAPI y visualización en Streamlit, sobre PostgreSQL compartido y un LLM local para clasificación automática de solicitudes.",
+      "problem": "La clasificación y enrutamiento manual de solicitudes consume horas del equipo de atención.",
+      "technologies": ["n8n", "FastAPI", "Streamlit", "PostgreSQL", "LLM local"],
+      "result": "Primera fase operativa en atención al cliente, con monitoreo en tiempo real.",
+      "icon": "workflow",
+      "links": { "repo": "https://github.com/Pabandres85/LLM_N8N" }
+    },
+    {
+      "title": "Clasificador de textos con TinyBERT + MLflow",
+      "category": "ia",
+      "description": "Comparativa de modelos TinyBERT, BERT-Mini y DistilBERT para clasificación de noticias, con seguimiento de métricas en MLflow sobre el dataset AG News.",
+      "problem": "Elegir el modelo más liviano que mantenga precisión aceptable requiere medición sistemática.",
+      "technologies": ["Python", "TinyBERT", "DistilBERT", "MLflow", "AG News"],
+      "result": "Accuracy, F1-score y precision monitorizados y comparados entre las tres arquitecturas.",
+      "icon": "git-compare",
+      "links": { "repo": "https://github.com/Pabandres85/Proyecto_MLFlow" }
+    },
+    {
+      "title": "Calidad del agua del Río Cauca",
+      "category": "ciencia-datos",
+      "description": "Análisis de datos públicos sobre la calidad del agua del Río Cauca con limpieza, análisis exploratorio, visualización interactiva y modelado predictivo.",
+      "problem": "Los datos ambientales públicos existen pero no son legibles ni accionables para la ciudadanía.",
+      "technologies": ["Python", "Streamlit", "Docker", "Pandas", "Scikit-learn"],
+      "result": "Aplicación desplegada en Streamlit Cloud, ejecutable también en local con Docker.",
+      "icon": "droplets",
+      "links": {
+        "repo": "https://github.com/Pabandres85/rioCaucaValle",
+        "demo": "https://riocaucavalle-pabloandres.streamlit.app/"
+      }
+    },
+    {
+      "title": "Landing page para profesionales",
+      "category": "desarrollo",
+      "description": "Landing page moderna y responsive con chatbot embebido, blog y formularios de contacto, orientada a profesionales independientes.",
+      "problem": "Los profesionales independientes necesitan presencia web sin el costo de un desarrollo a medida.",
+      "technologies": ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+      "result": "Sitio en producción con enfoque en UX y SEO básico.",
+      "icon": "layout-template",
+      "links": { "demo": "https://pabandres85.github.io/susanapsicologia/" }
+    }
+  ],
+
+  "skills": [
+    {
+      "category": "Frontend",
+      "icon": "monitor",
+      "items": [
+        { "name": "Angular", "level": "avanzado" },
+        { "name": "TypeScript", "level": "avanzado" },
+        { "name": "JavaScript", "level": "avanzado" },
+        { "name": "HTML/CSS", "level": "avanzado" },
+        { "name": "SCSS", "level": "intermedio" }
+      ]
+    },
+    {
+      "category": "Backend",
+      "icon": "server",
+      "items": [
+        { "name": ".NET / C#", "level": "avanzado" },
+        { "name": "Python", "level": "avanzado" },
+        { "name": "APIs REST", "level": "avanzado" },
+        { "name": "Node.js", "level": "intermedio" },
+        { "name": "Java / PL-SQL", "level": "intermedio" }
+      ]
+    },
+    {
+      "category": "Datos y bases de datos",
+      "icon": "database",
+      "items": [
+        { "name": "SQL Server", "level": "avanzado" },
+        { "name": "Pandas", "level": "avanzado" },
+        { "name": "Data Engineering", "level": "avanzado" },
+        { "name": "Oracle", "level": "intermedio" },
+        { "name": "PostgreSQL", "level": "intermedio" },
+        { "name": "MongoDB", "level": "intermedio" }
+      ]
+    },
+    {
+      "category": "Cloud y DevOps",
+      "icon": "cloud",
+      "items": [
+        { "name": "AWS (S3, Glue, Athena, Lambda)", "level": "avanzado" },
+        { "name": "Git / GitHub", "level": "avanzado" },
+        { "name": "Azure / Azure DevOps", "level": "intermedio" },
+        { "name": "Docker", "level": "intermedio" },
+        { "name": "CI/CD", "level": "intermedio" }
+      ]
+    },
+    {
+      "category": "IA y analítica",
+      "icon": "brain",
+      "items": [
+        { "name": "Power BI / QuickSight", "level": "avanzado" },
+        { "name": "Machine Learning", "level": "intermedio" },
+        { "name": "RAG / LLMs", "level": "intermedio" },
+        { "name": "Análisis multivariado", "level": "intermedio" },
+        { "name": "R", "level": "intermedio" }
+      ]
+    },
+    {
+      "category": "Automatización",
+      "icon": "zap",
+      "items": [
+        { "name": "Python scripting", "level": "avanzado" },
+        { "name": "ETL pipelines", "level": "avanzado" },
+        { "name": "Web scraping", "level": "intermedio" },
+        { "name": "n8n", "level": "intermedio" }
+      ]
+    }
+  ],
+
+  "education": [
+    {
+      "title": "Maestría en IA y Ciencias de Datos",
+      "institution": "Universidad Autónoma de Occidente",
+      "period": "2025 – 2027",
+      "status": "En curso",
+      "icon": "graduation-cap"
+    },
+    {
+      "title": "Especialización en Inteligencia Artificial",
+      "institution": "Universidad Autónoma de Occidente",
+      "period": "2024 – 2025",
+      "status": "Completada",
+      "icon": "brain"
+    },
+    {
+      "title": "Especialización en Gerencia de Proyectos",
+      "institution": "UniHorizonte",
+      "period": "2022 – 2023",
+      "status": "Completada",
+      "icon": "award"
+    },
+    {
+      "title": "Ingeniería de Sistemas",
+      "institution": "Fundación de Educación Superior San José",
+      "period": "2019 – 2021",
+      "status": "Completada",
+      "icon": "code"
+    },
+    {
+      "title": "Tecnología en Administración Pública",
+      "institution": "Universidad del Magdalena",
+      "period": "2013 – 2016",
+      "status": "Completada",
+      "icon": "building-2"
+    }
+  ],
+
+  "certifications": [
+    {
+      "title": "Create an Enterprise Knowledge Assistant",
+      "issuer": "AWS SimuLearn",
+      "icon": "cloud"
+    },
+    {
+      "title": "AI Agents Fundamentals",
+      "issuer": "",
+      "icon": "bot"
+    },
+    {
+      "title": "Curso Profesional de Python",
+      "issuer": "",
+      "icon": "code"
+    },
+    {
+      "title": "Curso de Fundamentos de .NET",
+      "issuer": "",
+      "icon": "server"
+    },
+    {
+      "title": "Curso de Introducción al Desarrollo Backend",
+      "issuer": "",
+      "icon": "terminal"
+    },
+    {
+      "title": "Claude Certified Architect – Foundations (CCA-F)",
+      "issuer": "Anthropic · En preparación",
+      "icon": "badge-check"
+    }
+  ]
+}

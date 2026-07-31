@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pablo Andrés Muñoz – Full-Stack Developer & AI Specialist. .NET, Python, Angular y Cloud. Transformando datos en decisiones inteligentes. Cali, Colombia.">
+  <meta name="theme-color" content="#0D0E12">
+  <title>Pablo Andrés Muñoz | Full Stack Developer &amp; IA</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.383.0/font/lucide.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#inicio" class="nav__logo">PM<span class="accent">.</span></a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav__menu" id="navMenu">
+        <a href="#inicio" class="nav__link">Inicio</a>
+        <a href="#sobre-mi" class="nav__link">Sobre mí</a>
+        <a href="#experiencia" class="nav__link">Experiencia</a>
+        <a href="#proyectos" class="nav__link">Proyectos</a>
+        <a href="#habilidades" class="nav__link">Habilidades</a>
+        <a href="#formacion" class="nav__link">Formación</a>
+        <a href="#contacto" class="nav__link">Contacto</a>
+        <a href="#" class="btn btn--sm nav__cta" id="btnDownloadCV">
+          <i class="icon-download"></i> Descargar CV
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero" id="inicio">
+    <div class="hero__glow hero__glow--violet"></div>
+    <div class="hero__glow hero__glow--cyan"></div>
+
+    <div class="hero__content">
+      <p class="hero__greeting">Hola, soy</p>
+      <h1 class="hero__name">Pablo Andrés Muñoz</h1>
+      <div class="hero__role">
+        <span class="hero__role-static">// </span>
+        <span class="hero__role-text" id="typingText"></span>
+        <span class="hero__cursor">|</span>
+      </div>
+      <p class="hero__tagline">
+        Desarrollo soluciones empresariales, plataformas web y proyectos basados
+        en datos e inteligencia artificial.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#proyectos" class="btn btn--primary">
+          <i class="icon-folder-open"></i> Ver proyectos
+        </a>
+        <a href="#contacto" class="btn btn--outline">
+          <i class="icon-mail"></i> Contactarme
+        </a>
+      </div>
+
+      <div class="hero__social">
+        <a href="https://www.linkedin.com/in/pabandres85" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="icon-linkedin"></i>
+        </a>
+        <a href="https://github.com/Pabandres85" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="icon-github"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <div class="hero__photo-frame">
+        <div class="hero__photo-placeholder">
+          <img src="assets/images/perfilpablo.jpg" alt="Pablo Andrés Muñoz" width="400" height="400" fetchpriority="high">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SOBRE MÍ ═══════════════ -->
+  <section class="section" id="sobre-mi">
+    <div class="container">
+      <h2 class="section__title reveal">Sobre mí</h2>
+      <div class="about reveal">
+        <div class="about__text">
+          <p>
+            Ingeniero de Sistemas con especializaciones en Gerencia de Proyectos
+            e Inteligencia Artificial, y más de una década construyendo
+            soluciones tecnológicas para los sectores público, financiero, de
+            salud y de servicios públicos. Combino una sólida base en desarrollo
+            de software y algoritmos con un enfoque estratégico orientado al
+            producto.
+          </p>
+          <p>
+            Actualmente diseño ecosistemas de datos sobre AWS para la
+            administración pública como Ingeniero de Datos e IA, y modernizo
+            sistemas bancarios legados con Angular, .NET y Azure en una
+            multinacional de tecnología. También he formado profesionales como
+            docente universitario. Estoy cursando la Maestría en Inteligencia
+            Artificial y Ciencias de Datos.
+          </p>
+          <p>
+            Creo en la tecnología como herramienta de impacto: cada línea de
+            código, cada pipeline, cada modelo debe traducirse en un resultado
+            concreto para las personas y las organizaciones.
+          </p>
+        </div>
+        <div class="about__stats">
+          <div class="stat-card glass">
+            <span class="stat-card__number">10+</span>
+            <span class="stat-card__label">Años de experiencia</span>
+          </div>
+          <div class="stat-card glass">
+            <span class="stat-card__number">20+</span>
+            <span class="stat-card__label">Proyectos entregados</span>
+          </div>
+          <div class="stat-card glass">
+            <span class="stat-card__number">4</span>
+            <span class="stat-card__label">Sectores impactados</span>
+          </div>
+          <div class="stat-card glass">
+            <span class="stat-card__number">5</span>
+            <span class="stat-card__label">Títulos académicos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ EXPERIENCIA ═══════════════ -->
+  <section class="section section--alt" id="experiencia">
+    <div class="container">
+      <h2 class="section__title reveal">Experiencia profesional</h2>
+      <div class="timeline" id="timeline">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROYECTOS ═══════════════ -->
+  <section class="section" id="proyectos">
+    <div class="container">
+      <h2 class="section__title reveal">Proyectos destacados</h2>
+
+      <div class="projects__filters reveal" id="projectFilters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+      </div>
+
+      <div class="projects__grid" id="projectsGrid">
+        <!-- Populated by JS from JSON -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ HABILIDADES ═══════════════ -->
+  <section class="section section--alt" id="habilidades">
+    <div class="container">
+      <h2 class="section__title reveal">Habilidades técnicas</h2>
+      <div class="skills__grid" id="skillsGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FORMACIÓN ═══════════════ -->
+  <section class="section" id="formacion">
+    <div class="container">
+      <h2 class="section__title reveal">Formación y certificaciones</h2>
+      <div class="education__grid" id="educationGrid">
+        <!-- Populated by JS -->
+      </div>
+
+      <h3 class="section__subtitle reveal">Certificaciones</h3>
+      <div class="certs__grid" id="certsGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CONTACTO ═══════════════ -->
+  <section class="section section--alt" id="contacto">
+    <div class="container">
+      <h2 class="section__title reveal">Contacto</h2>
+      <div class="contact reveal">
+        <div class="contact__info">
+          <h3 class="contact__heading">¿Tienes un proyecto en mente?</h3>
+          <p class="contact__text">
+            Estoy disponible para proyectos de consultoría, desarrollo y ciencia
+            de datos. Escríbeme y conversemos.
+          </p>
+          <div class="contact__details">
+            <div class="contact__item">
+              <i class="icon-mail"></i>
+              <a href="mailto:ingenieropabloandres0@gmail.com">ingenieropabloandres0@gmail.com</a>
+            </div>
+            <div class="contact__item">
+              <i class="icon-map-pin"></i>
+              <span>Cali, Valle del Cauca, Colombia</span>
+            </div>
+            <div class="contact__item">
+              <i class="icon-linkedin"></i>
+              <a href="https://www.linkedin.com/in/pabandres85" target="_blank" rel="noopener">linkedin.com/in/pabandres85</a>
+            </div>
+            <div class="contact__item">
+              <i class="icon-github"></i>
+              <a href="https://github.com/Pabandres85" target="_blank" rel="noopener">github.com/Pabandres85</a>
+            </div>
+            <div class="contact__item">
+              <i class="icon-message-circle"></i>
+              <a href="https://wa.me/573217476850" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+          </div>
+          <div class="contact__availability">
+            <span class="contact__dot"></span>
+            Disponible para nuevos proyectos
+          </div>
+        </div>
+
+        <form class="contact__form glass" action="https://formspree.io/f/TU_ID" method="POST">
+          <div class="form__group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+          </div>
+          <div class="form__group">
+            <label for="email">Correo</label>
+            <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com">
+          </div>
+          <div class="form__group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Cuéntame sobre tu proyecto..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">
+            <i class="icon-send"></i> Enviar mensaje
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">
+        &copy; <span id="currentYear"></span> Pablo Andrés Muñoz Martínez. Todos los derechos reservados.
+      </p>
+      <div class="footer__links">
+        <a href="https://www.linkedin.com/in/pabandres85" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="icon-linkedin"></i></a>
+        <a href="https://github.com/Pabandres85" target="_blank" rel="noopener" aria-label="GitHub"><i class="icon-github"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
