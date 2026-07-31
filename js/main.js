@@ -34,6 +34,10 @@ function initNav() {
   const menu      = document.getElementById('navMenu');
   const links     = menu.querySelectorAll('.nav__link');
 
+  // Se consultaba el DOM en cada evento de scroll; basta una vez.
+  // Debe declararse antes del primer onScroll(): highlightActiveLink lo lee.
+  const sections  = document.querySelectorAll('section[id]');
+
   // Scroll → glass nav
   const onScroll = () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -56,9 +60,6 @@ function initNav() {
   links.forEach(link => {
     link.addEventListener('click', () => setMenu(false));
   });
-
-  // Se consultaba el DOM en cada evento de scroll; basta una vez.
-  const sections = document.querySelectorAll('section[id]');
 
   // Highlight active section
   function highlightActiveLink() {
