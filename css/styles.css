@@ -17,7 +17,7 @@
   /* Text */
   --text-primary:   #F5F7FA;
   --text-secondary: #94A3B8;
-  --text-muted:     #64748B;
+  --text-muted:     #8A99AE;
 
   /* Glass */
   --glass-bg:     rgba(24, 27, 34, 0.60);
@@ -35,6 +35,25 @@
   /* Transitions */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --duration:  0.4s;
+}
+
+/* ═══════════════════════════════════════
+   ICONOS (sprite SVG inline)
+   ═══════════════════════════════════════ */
+.sprite { display: none; }
+
+/* 1em hace que hereden el font-size del contexto, igual que la fuente de
+   iconos que reemplazan, así el CSS existente sigue controlando su tamaño. */
+.icon {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  vertical-align: -0.125em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 *,
@@ -671,6 +690,21 @@ img {
   box-shadow: 0 16px 48px rgba(139, 92, 246, 0.12);
 }
 
+.project-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-card__problem {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  border-left: 2px solid var(--violet);
+  padding-left: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
 .project-card__img {
   height: 190px;
   background: var(--bg-elevated);
@@ -954,7 +988,7 @@ img {
   border: 1px dashed var(--border);
   border-radius: 16px;
 }
-.data-error i {
+.data-error .icon {
   font-size: 1.75rem;
   color: var(--violet);
   display: block;
@@ -1005,7 +1039,7 @@ img {
   font-size: 0.9rem;
   color: var(--text-secondary);
 }
-.contact__item i {
+.contact__item .icon {
   color: var(--violet);
   font-size: 1.1rem;
   width: 20px;
@@ -1081,7 +1115,7 @@ img {
   line-height: 1.5;
   color: var(--text-secondary);
 }
-.form-notice i { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+.form-notice .icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
 .form-notice strong { color: var(--text-primary); display: block; margin-bottom: 0.2rem; }
 .form-notice a { text-decoration: underline; }
 
@@ -1089,20 +1123,20 @@ img {
   background: var(--violet-soft);
   border: 1px solid rgba(139, 92, 246, 0.35);
 }
-.form-notice--info i,
+.form-notice--info .icon,
 .form-notice--info a { color: var(--violet); }
 
 .form-notice--success {
   background: rgba(52, 211, 153, 0.12);
   border: 1px solid rgba(52, 211, 153, 0.35);
 }
-.form-notice--success i { color: #34d399; }
+.form-notice--success .icon { color: #34d399; }
 
 .form-notice--error {
   background: rgba(248, 113, 113, 0.12);
   border: 1px solid rgba(248, 113, 113, 0.35);
 }
-.form-notice--error i,
+.form-notice--error .icon,
 .form-notice--error a { color: #f87171; }
 
 /* ═══════════════════════════════════════

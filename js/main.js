@@ -43,22 +43,25 @@ function initNav() {
   onScroll();
 
   // Hamburger
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    menu.classList.toggle('open');
-  });
+  const setMenu = open => {
+    toggle.classList.toggle('open', open);
+    menu.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  };
+  setMenu(false);
+
+  toggle.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
 
   // Close menu on link click
   links.forEach(link => {
-    link.addEventListener('click', () => {
-      toggle.classList.remove('open');
-      menu.classList.remove('open');
-    });
+    link.addEventListener('click', () => setMenu(false));
   });
+
+  // Se consultaba el DOM en cada evento de scroll; basta una vez.
+  const sections = document.querySelectorAll('section[id]');
 
   // Highlight active section
   function highlightActiveLink() {
-    const sections = document.querySelectorAll('section[id]');
     let current = '';
     sections.forEach(sec => {
       const top = sec.offsetTop - 120;
@@ -83,7 +86,15 @@ function initTyping() {
     'Docente universitario'
   ];
 
-  const el       = document.getElementById('typingText');
+  const el = document.getElementById('typingText');
+
+  // El typing es JS puro, así que la regla CSS de reduced-motion no lo alcanza:
+  // hay que detenerlo aquí o el texto parpadea indefinidamente.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = roles[0];
+    return;
+  }
+
   let roleIdx    = 0;
   let charIdx    = 0;
   let deleting   = false;
@@ -118,22 +129,30 @@ function initTyping() {
   tick();
 }
 
-/* ───── SCROLL REVEAL ───── */
-function initScrollReveal() {
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
+/* ───── SCROLL REVEAL ─────
+   Un único observer compartido. Antes se creaba uno nuevo en cada render y
+   en cada clic de filtro, sin desconectar los anteriores. */
+const revealObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target); // ya cumplió su función
+    });
+  },
+  { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+);
 
-  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
-    observer.observe(el);
-  });
+/* Observa el propio elemento y/o sus descendientes revelables. */
+function observeReveal(scope = document) {
+  if (scope.classList?.contains('reveal') || scope.classList?.contains('reveal-stagger')) {
+    revealObserver.observe(scope);
+  }
+  scope.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
+}
+
+function initScrollReveal() {
+  observeReveal();
 }
 
 /* ───── LOAD DATA ───── */
@@ -170,7 +189,7 @@ function showDataError() {
     el.classList.remove('reveal-stagger');
     el.innerHTML = `
       <div class="data-error" role="alert">
-        <i class="icon-triangle-alert" aria-hidden="true"></i>
+        <svg class="icon" aria-hidden="true"><use href="#i-triangle-alert"></use></svg>
         <p>No se pudo cargar ${label}.</p>
         <p class="data-error__hint">
           Revisa tu conexión y recarga la página, o escríbeme a
@@ -200,11 +219,7 @@ function renderTimeline(items) {
   `).join('');
 
   // Re-observe for scroll reveal
-  const obs = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.1 }
-  );
-  obs.observe(container);
+  observeReveal(container);
 }
 
 /* ───── PROJECTS ───── */
@@ -224,7 +239,9 @@ function renderProjects(projects) {
   categories.forEach(cat => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
+    btn.type = 'button';
     btn.dataset.filter = cat;
+    btn.setAttribute('aria-pressed', 'false');
     btn.textContent = categoryLabels[cat] || cat;
     filters.appendChild(btn);
   });
@@ -232,43 +249,50 @@ function renderProjects(projects) {
   // Render all cards
   function renderCards(filter = 'all') {
     const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
-    grid.innerHTML = filtered.map(p => `
+
+    grid.innerHTML = filtered.map(p => {
+      // Sin captura, el icono sigue haciendo de portada.
+      const cover = p.image
+        ? `<img src="${p.image}" alt="Captura de ${p.title}" loading="lazy" decoding="async">`
+        : `<svg class="icon" aria-hidden="true"><use href="#i-${p.icon}"></use></svg>`;
+      const links = p.links || {};
+
+      return `
       <article class="project-card reveal">
-        <div class="project-card__img">
-          <i class="icon-${p.icon}"></i>
-        </div>
+        <div class="project-card__img">${cover}</div>
         <div class="project-card__body">
           <span class="project-card__category">${categoryLabels[p.category] || p.category}</span>
           <h3 class="project-card__title">${p.title}</h3>
+          ${p.problem ? `<p class="project-card__problem">${p.problem}</p>` : ''}
           <p class="project-card__desc">${p.description}</p>
           ${p.result ? `<p class="project-card__result">${p.result}</p>` : ''}
           <div class="project-card__tags">
             ${p.technologies.map(t => `<span class="project-card__tag">${t}</span>`).join('')}
           </div>
           <div class="project-card__links">
-            ${p.links.repo   ? `<a href="${p.links.repo}" target="_blank" rel="noopener" class="project-card__link"><i class="icon-github"></i> Código</a>` : ''}
-            ${p.links.demo   ? `<a href="${p.links.demo}" target="_blank" rel="noopener" class="project-card__link"><i class="icon-external-link"></i> Demo</a>` : ''}
+            ${links.repo ? `<a href="${links.repo}" target="_blank" rel="noopener" class="project-card__link"><svg class="icon" aria-hidden="true"><use href="#i-github"></use></svg> Código</a>` : ''}
+            ${links.demo ? `<a href="${links.demo}" target="_blank" rel="noopener" class="project-card__link"><svg class="icon" aria-hidden="true"><use href="#i-external-link"></use></svg> Demo</a>` : ''}
           </div>
         </div>
-      </article>
-    `).join('');
+      </article>`;
+    }).join('');
 
-    // Re-observe new cards
-    const obs = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-      { threshold: 0.08 }
-    );
-    grid.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    observeReveal(grid);
   }
 
   renderCards();
 
   // Filter click handling
   filters.addEventListener('click', e => {
-    if (!e.target.classList.contains('filter-btn')) return;
-    filters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    e.target.classList.add('active');
-    renderCards(e.target.dataset.filter);
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    filters.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+    renderCards(btn.dataset.filter);
   });
 }
 
@@ -279,7 +303,7 @@ function renderSkills(skills) {
 
   grid.innerHTML = skills.map(group => `
     <div class="skill-group glass">
-      <div class="skill-group__icon"><i class="icon-${group.icon}"></i></div>
+      <div class="skill-group__icon"><svg class="icon" aria-hidden="true"><use href="#i-${group.icon}"></use></svg></div>
       <h3 class="skill-group__title">${group.category}</h3>
       <div class="skill-group__items">
         ${group.items.map(item =>
@@ -289,11 +313,7 @@ function renderSkills(skills) {
     </div>
   `).join('');
 
-  const obs = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.1 }
-  );
-  obs.observe(grid);
+  observeReveal(grid);
 }
 
 /* ───── EDUCATION ───── */
@@ -303,7 +323,7 @@ function renderEducation(items) {
 
   grid.innerHTML = items.map(item => `
     <div class="edu-card glass">
-      <div class="edu-card__icon"><i class="icon-${item.icon}"></i></div>
+      <div class="edu-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-${item.icon}"></use></svg></div>
       <div>
         <h3 class="edu-card__title">${item.title}</h3>
         ${item.institution ? `<p class="edu-card__institution">${item.institution}</p>` : ''}
@@ -313,11 +333,7 @@ function renderEducation(items) {
     </div>
   `).join('');
 
-  const obs = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.1 }
-  );
-  obs.observe(grid);
+  observeReveal(grid);
 }
 
 /* ───── CERTIFICACIONES ───── */
@@ -328,7 +344,7 @@ function renderCertifications(items) {
 
   grid.innerHTML = items.map(item => `
     <div class="cert-card glass">
-      <i class="icon-${item.icon} cert-card__icon"></i>
+      <svg class="icon cert-card__icon" aria-hidden="true"><use href="#i-${item.icon}"></use></svg>
       <div>
         <h4 class="cert-card__title">${item.title}</h4>
         ${item.issuer ? `<p class="cert-card__issuer">${item.issuer}</p>` : ''}
@@ -336,11 +352,7 @@ function renderCertifications(items) {
     </div>
   `).join('');
 
-  const obs = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.1 }
-  );
-  obs.observe(grid);
+  observeReveal(grid);
 }
 
 /* ───── FORMULARIO DE CONTACTO ───── */
@@ -357,7 +369,7 @@ function initContactForm() {
     notice.classList.add('form-notice--info');
     notice.setAttribute('role', 'status');
     notice.innerHTML = `
-      <i class="icon-info" aria-hidden="true"></i>
+      <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
       <div>
         <strong>El formulario todavía no está conectado.</strong>
         <p>
@@ -395,12 +407,12 @@ function initContactForm() {
         headers: { Accept: 'application/json' }
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      showNotice('success', '<i class="icon-check" aria-hidden="true"></i><div>¡Mensaje enviado! Te responderé pronto.</div>');
+      showNotice('success', '<svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg><div>¡Mensaje enviado! Te responderé pronto.</div>');
       form.reset();
     } catch (err) {
       console.error('Error al enviar el formulario:', err);
       showNotice('error', `
-        <i class="icon-triangle-alert" aria-hidden="true"></i>
+        <svg class="icon" aria-hidden="true"><use href="#i-triangle-alert"></use></svg>
         <div>No se pudo enviar. Escríbeme a
           <a href="mailto:${CONTACTO.email}">${CONTACTO.email}</a>.
         </div>`);

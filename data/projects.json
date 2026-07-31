@@ -176,6 +176,7 @@
     },
     {
       "title": "Chatbot Multisectorial con DeepSeek",
+      "image": "assets/images/projects/chatbot-deepseek.webp",
       "category": "ia",
       "description": "Plataforma adaptable que permite a empresas ofrecer servicio al cliente personalizado mediante un LLM alojado localmente. Incluye modo oscuro, analítica de conversaciones, gestión multiempresa y pruebas unitarias.",
       "problem": "Las empresas pequeñas no pueden costear asistentes conversacionales en la nube ni ceder sus datos a terceros.",
@@ -186,6 +187,7 @@
     },
     {
       "title": "MCP_IA – IA local con análisis futbolístico",
+      "image": "assets/images/projects/mcp-ia.webp",
       "category": "ia",
       "description": "Plataforma bajo arquitectura Model Context Protocol que integra un LLM local con interfaz web en Streamlit y un bot de Telegram para predicciones y análisis de rendimiento deportivo.",
       "problem": "Explorar el MCP como estándar para dar contexto estructurado a modelos ejecutados localmente.",
@@ -196,6 +198,7 @@
     },
     {
       "title": "NeumoIA – Detección de neumonía",
+      "image": "assets/images/projects/neumoia.webp",
       "category": "ia",
       "description": "Sistema de visión por computador para detectar neumonía en radiografías de tórax, con pruebas unitarias y despliegue contenerizado.",
       "problem": "El diagnóstico radiológico temprano depende de disponibilidad de especialistas, escasa en zonas rurales.",
@@ -206,6 +209,7 @@
     },
     {
       "title": "Automatización empresarial con IA",
+      "image": "assets/images/projects/automatizacion-n8n.webp",
       "category": "automatizacion",
       "description": "Flujos inteligentes en n8n conectados a un backend FastAPI y visualización en Streamlit, sobre PostgreSQL compartido y un LLM local para clasificación automática de solicitudes.",
       "problem": "La clasificación y enrutamiento manual de solicitudes consume horas del equipo de atención.",
@@ -216,6 +220,7 @@
     },
     {
       "title": "Clasificador de textos con TinyBERT + MLflow",
+      "image": "assets/images/projects/tinybert-mlflow.webp",
       "category": "ia",
       "description": "Comparativa de modelos TinyBERT, BERT-Mini y DistilBERT para clasificación de noticias, con seguimiento de métricas en MLflow sobre el dataset AG News.",
       "problem": "Elegir el modelo más liviano que mantenga precisión aceptable requiere medición sistemática.",
@@ -226,6 +231,7 @@
     },
     {
       "title": "Calidad del agua del Río Cauca",
+      "image": "assets/images/projects/rio-cauca.webp",
       "category": "ciencia-datos",
       "description": "Análisis de datos públicos sobre la calidad del agua del Río Cauca con limpieza, análisis exploratorio, visualización interactiva y modelado predictivo.",
       "problem": "Los datos ambientales públicos existen pero no son legibles ni accionables para la ciudadanía.",
@@ -239,6 +245,7 @@
     },
     {
       "title": "Landing page para profesionales",
+      "image": "assets/images/projects/landing-profesional.webp",
       "category": "desarrollo",
       "description": "Landing page moderna y responsive con chatbot embebido, blog y formularios de contacto, orientada a profesionales independientes.",
       "problem": "Los profesionales independientes necesitan presencia web sin el costo de un desarrollo a medida.",

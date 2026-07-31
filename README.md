@@ -86,11 +86,11 @@ Arrastra la carpeta o conecta el repo. No requiere build.
 - **CSS3** con custom properties, glassmorphism, grid/flexbox
 - **JavaScript** vanilla (ES6+)
 - **Google Fonts**: Space Grotesk + Inter
-- **Lucide Icons** vía CDN
+- **Lucide Icons** como sprite SVG inline (sin CDN)
 - **Formspree** para el formulario de contacto
 
 ## Performance
-- ~50KB total (sin imágenes)
+- Sin dependencias externas salvo Google Fonts
 - Carga en < 1 segundo
 - SEO friendly sin SSR
 - Mobile-first responsive
